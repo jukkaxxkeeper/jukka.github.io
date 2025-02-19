@@ -1,330 +1,224 @@
-:root{
-    --selected_font: 'Franklin Gothic Medium';
+document.title = "EDP Ekko Group";
 
-    --palette_white: #FFFFFF;
-    --palette_mid_white: #F5F5F5;
-    --palette_black: #000000;
-    --palette_gray: #2C2C2C;
-    --palette_yellow: #FFAB00;
+let first_button = document.querySelector(".button1");
+let first_display_holder = document.querySelector(".subject_holder");
+let first_display = document.querySelector(".display1");
+let course_holder = document.querySelector(".course_holder");
+let course_text_holder = document.querySelector(".course_text_holder");
+let course_text = document.querySelector(".course_text");
+let color_holder = document.querySelector(".color_holder");
+let second_button = document.querySelector(".button2");
+let third_button = document.querySelector(".button3");
+let righthand = document.querySelector(".righthand");
+let righthand_p = document.querySelector(".righthand_p");
 
-    --ccs_color: #fff700;
-    --cba_color: #0026ff;
-    --ccje_color: #000000;
-    --cte_color: #ff6600;
+const ccs_color = getComputedStyle(document.documentElement).getPropertyValue('--ccs_color');
+const cba_color = getComputedStyle(document.documentElement).getPropertyValue('--cba_color');
+const ccje_color = getComputedStyle(document.documentElement).getPropertyValue('--ccje_color');
+const cte_color = getComputedStyle(document.documentElement).getPropertyValue('--cte_color');
+const mid_white = getComputedStyle(document.documentElement).getPropertyValue('--palette-mid-white');
+
+// first button first range..
+
+first_button.addEventListener("click", changeText);
+
+// decor
+
+let triangle_bg = document.querySelector(".triangle_bg");
+let cylinder_bg = document.querySelector(".cylinder_bg");
+let spiral_bg = document.querySelector(".spiral");
+
+let cube_bg = document.querySelector(".cube_bg");
+let bicube_bg = document.querySelector(".bicube_bg");
+let donut_bg = document.querySelector(".donut_bg");
+let tetris_bg = document.querySelector(".tetris_bg");
+
+let glass_mesh_bg = document.querySelector(".glass_mesh");
+let glass_ring_bg = document.querySelector(".glass_ring");
+let glass_torus_knot_bg = document.querySelector(".glass_torus_knot");
+let glass_lense_bg = document.querySelector(".glass_lense");
+let glass_curl_bg = document.querySelector(".glass_curl");
+let glass_plug_bg = document.querySelector(".glass_plug");
+
+function changeText(){
+    if (first_display.innerHTML == "Subject: Event Driven Programming"){
+        first_display_holder.style.backgroundColor = "white";
+        first_display.style.color = "black";
+        first_display.innerHTML = "Professor: Mr. Amado Diao";
+    }
+    else if (first_display.innerHTML == "Professor: Mr. Amado Diao"){
+        first_display_holder.style.backgroundColor = "black";
+        first_display.style.color = "white";
+        first_display.innerHTML = "Subject: Event Driven Programming";
+    }
 }
 
-body{
-    /* background-color: var(--palette_mid_white); */
-    text-align: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(140deg, white, rgb(26, 26, 26));
-    background-attachment: fixed;
-}
+// second button code range..
 
-.header_holder{
-    display: inline-block;
-    margin-top: 2rem;
-}
+const course_name = ["CCS", "CBA", "CCJE", "CTE"];
+const course_color = [ccs_color, cba_color, ccje_color, cte_color];
+const identification = ["Student", "Faculty", "Staff"];
 
-h2{
-    font-family: var(--selected_font);
-    margin-top: -35px;
-}
+let click_counter = 0;
 
-button{
-    border-radius: 50px;
-    border: none;
-    background-color: rgb(223, 223, 223);
-}
+const course_text_content = course_text.innerHTML;
 
-.header_txt{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: 500;
-    font-size: 100px;
-    padding-top: 5rem;
-}
+course_text.innerHTML = course_text_content + course_name[0];
+color_holder.style.backgroundColor = course_color[0];
 
-    .button_container {
-        height: 300px;
-        margin-top: 2rem;
-        display: flex;
-        justify-content: center;
+second_button.addEventListener("click", changeCourse);
+
+function changeCourse(){
+
+    if (click_counter == 1){
+        course_holder.style.backgroundColor = "white";
+        course_text_holder.style.backgroundColor = "white";
+        course_text.style.color = "black";
+    } else{
+        course_text_holder.style.backgroundColor = "black";
+        course_holder.style.backgroundColor = "black";
+        course_text.style.color = "white";
     }
 
+    if (click_counter != 3){
+        click_counter++;
+        course_text.innerHTML = course_text_content + course_name[click_counter];
+        color_holder.style.backgroundColor = course_color[click_counter];
+    } else{
+        click_counter = 0;
+        course_text.innerHTML = course_text_content + course_name[click_counter];
+        color_holder.style.backgroundColor = course_color[click_counter];
+    }
+}
 
-    .button_holder{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-left: 18rem;
-        align-items: end;
+// third button code range..
+
+const member = ["Student", "Faculty", "Staff"]
+const member_color = ["white", "blue", "green"]
+
+righthand_p.innerHTML = member[0];
+
+let member_click_counter = 0;
+
+third_button.addEventListener("click", changeFaculty);
+
+
+
+function changeFaculty(){
+
+    if (member_click_counter <= 1){
+        member_click_counter++;
+    } else{
+        member_click_counter = 0;   
     }
 
-        .button_holder button {
-            cursor: pointer;
-            width: 200px;
-            height: 57px;
-            margin: 9px 0px;
-            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: bolder;
-            font-size: 15px;
-        }
-        
-        .button_holder button:hover , .member_container button:hover{
-            transition: background-color 0.15s ease, font-size 0.15s;
-            background-color: rgb(136, 136, 136);
-        }
-        
-        .button_holder button:active, .member_container button:active{
-            font-size: 16px;
-        }
+    console.log(member_click_counter == 0);
+    if (member_click_counter == 0){
+        righthand_p.style.color = "black";
+    } else {righthand_p.style.color = "white";}
 
-    .display_holder{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items:baseline;
-        margin-left: -11rem;
-        z-index: -1;
+    righthand.style.backgroundColor = member_color[member_click_counter];
+    righthand_p.innerHTML = member[member_click_counter];
+}
+
+// member button code range..
+
+member_button = document.querySelector('.mem_con_button');
+member_container = document.querySelector('.member_name_container');
+
+let isClicked = false;
+
+member_button.addEventListener("mouseenter", mouseHovered);
+member_button.addEventListener("mouseleave", mouseUnhovered);
+member_button.addEventListener("click", buttonClicked);
+
+function buttonClicked(){
+    if (!isClicked){
+        member_container.style.backgroundColor = "white";
+        isClicked = true
+    } else{
+        member_container.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        isClicked = false
+    }
+}
+
+function mouseHovered(){
+    member_container.style.opacity = 1;
+
+    if (window.matchMedia("(max-width: 1280px)").matches){
+        return console.log("no animation");
     }
 
-        .subject_holder{
-            background-color: black;
-            display: inline-block;
-            border-radius: 10px;
-            padding: 0px 20px;
-            margin: 10px;
-            border: 2px solid black;
-            transition: background-color 0.50s ease;
-        }
+    // decor movements
+    triangle_bg.style.left = "-30rem";
+    triangle_bg.style.bottom = "-25rem";
+    cylinder_bg.style.left = "0rem";
+    cylinder_bg.style.bottom = "-4rem";
+    spiral_bg.style.left = "4rem";
+    spiral_bg.style.bottom = "-24rem";
+    cube_bg.style.bottom = "-80rem";
+    cube_bg.style.right = "-105rem";
+    bicube_bg.style.bottom = "-10rem";
+    bicube_bg.style.right = "-8rem";
+    bicube_bg.style.filter = "blur(1px)";
+    donut_bg.style.bottom = "-33rem";
+    donut_bg.style.right = "10rem";
+    tetris_bg.style.right = "-12rem";
+    tetris_bg.style.bottom = "14rem";
+    glass_mesh_bg.style.left = "-10rem";
+    glass_mesh_bg.style.top = "-9rem";
+    glass_ring_bg.style.left = "15rem";
+    glass_ring_bg.style.top = "-5rem";
+    glass_torus_knot_bg.style.top = "-10rem";
+    glass_torus_knot_bg.style.left = "33rem";
+    glass_lense_bg.style.right = "25rem";
+    glass_lense_bg.style.top = "-12rem";
+    glass_curl_bg.style.right = "0rem";
+    glass_curl_bg.style.top = "-5rem";
+    glass_plug_bg.style.top = "5rem";
+    glass_plug_bg.style.right = "-12rem";
+}
 
-            .subject_holder p {
-                transition: color 0.50s ease;
-            }
+function mouseUnhovered(){
+    member_container.style.opacity = 0;
 
-        .display_holder p{
-            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: bolder;
-            font-size: 17px;
-            color: var(--palette_white);
-        }
-
-        .course_holder{ 
-            background-color: black;
-            width: 20rem;
-            display: flex;
-            border-radius: 10px;
-            padding: 0px 20px;
-            margin: 0px 200px;
-            border: 2px solid black;
-        }
-
-        .course_text_holder{
-            width: 50%;
-            background-color: black;
-            transition: background-color 0.15s ease;
-        }
-
-        .color_holder{
-            width: 50%;
-            height: 100%;
-            background-color: yellow;
-            transition: background-color 0.15s ease;
-        }
-
-        .course_text {
-            color: black;
-            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: bolder;
-            font-size: 17px;
-            color: var(--palette_white);
-            display: inline-block;
-            transition: color 0.15s ease;
-        }
-
-
-    .text_holder {
-        background-color: black;
-        margin: 10px 100px;
-        border-radius: 10px;
-        display: flex;
-        width: 20rem;
-        border: 2px solid black;
+    if (window.matchMedia("(max-width: 1280px)").matches){
+        return console.log("no animation");
     }
 
-    .text_holder p {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    .lefthand{
-        width: 40%;
-        margin-left: 10%;
-    }
-
-    .righthand{
-        height: 100%;
-        width: 40%;
-        transition: background-color 0.15s ease; 
-    }
-
-.member_container{
-    width: 100vw;
-    margin-top: -4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    justify-content: center;
+    // decor movements
+    triangle_bg.style.left = "-10rem";
+    triangle_bg.style.bottom = "-5rem";
+    cylinder_bg.style.left = "7rem";
+    cylinder_bg.style.bottom = "9rem";
+    spiral_bg.style.left = "14rem";
+    spiral_bg.style.bottom = "-10rem";
+    cube_bg.style.bottom = "-65rem";
+    cube_bg.style.right = "-85rem";
+    bicube_bg.style.bottom = "2rem";
+    bicube_bg.style.right = "7rem";
+    bicube_bg.style.filter = "blur(0px)";
+    donut_bg.style.bottom = "-23rem";
+    donut_bg.style.right = "20rem";
+    tetris_bg.style.right = "-3rem";
+    tetris_bg.style.bottom = "20rem";
+    glass_mesh_bg.style.left = "-5rem";
+    glass_mesh_bg.style.top = "-3rem";
+    glass_ring_bg.style.left = "20rem";
+    glass_ring_bg.style.top = "1rem";
+    glass_torus_knot_bg.style.top = "-7rem";
+    glass_torus_knot_bg.style.left = "35rem";
+    glass_lense_bg.style.right = "30rem";
+    glass_lense_bg.style.top = "-9rem";
+    glass_curl_bg.style.right = "8rem";
+    glass_curl_bg.style.top = "0rem";
+    glass_plug_bg.style.top = "8rem";
+    glass_plug_bg.style.right = "-9rem";
 }
 
-    .member_container button{
-        height: 50px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 18px;
-        padding: 0px 35px;
-        height: 50px;
-        font-weight: bolder;
-        cursor: pointer;
-    }
-
-    .member_name_container{
-        display: inline-block;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        border-radius: 10px;
-        margin-top: 10px;
-        padding: 10px;
-        opacity: 0;
-        transition: opacity 1s ease, background-color 0.5s ease;
-    }
-
-    .member_name_container p {
-        font-family: var(--selected_font);
-        font-size: 30px;
-        padding: 0;
-        margin: 10px 0;
-    }
-
-/* decor */
-.triangle_bg{
-    position: absolute;
-    left: -10rem;
-    bottom: -5rem;
-    width: 400px;
-    transition: left 1s ease-out, bottom 1s ease-out;
-}
-
-.cylinder_bg{
-    position: absolute;
-    z-index: -1;
-    transform: rotate(36deg);
-    bottom: 9rem;
-    left: 7rem;
-    width: 12rem;
-    filter: blur(2px);
-    transition: left 1s ease-out, bottom 1s ease-out;
-}
-
-.spiral{
-    position: absolute;
-    z-index: -2;
-    bottom: -10rem;
-    left: 14rem;
-    transform: rotate(-30deg);
-    filter: blur(2px);
-    width: 400px;
-    transition: left 1s ease-out, bottom 1s ease-out;
-}   
-
-.cube_bg{
-    position: absolute;
-    width: 2000px;
-    z-index: -1;
-    bottom: -65rem;
-    right: -85rem;
-    transition: bottom 1s ease-out, right 1s ease-out;
-}
-
-.bicube_bg{
-    position: absolute;
-    z-index: -2;
-    bottom: 2rem;
-    right: 7rem;
-    width: 450px;
-    transition: bottom 1s ease-out, right 1s ease-out, filter 1s ease-out;
-}
-
-.donut_bg{
-    position: absolute;
-    z-index: -1;
-    bottom: -23rem;
-    right: 20rem;
-    width: 500px;
-    filter: blur(1px);
-    transition: bottom 1s ease-out, right 1s ease-out;
-}
-
-.tetris_bg{
-    position: absolute;
-    right: -3rem;
-    bottom: 20rem;
-    filter: blur(1px);
-    z-index: -2;
-    transition: right 1s ease-out, bottom 1s ease-out;
-}
-
-.glass_mesh{
-    position: absolute;
-    width: 400px;
-    left: -5rem;
-    top: -3rem;
-    z-index: -2;
-    transition: left 1s ease-out, top 1s ease-out;
-}
-
-.glass_ring{
-    position: absolute;
-    width: 200px;
-    left: 20rem;
-    top: 1rem;
-    z-index: -2;
-    transition: left 1s ease-out, top 1s ease-out;
-}
-
-.glass_torus_knot{
-    position: absolute;
-    top: -7rem;
-    width: 200px;
-    left: 35rem;
-    z-index: -2;
-    transition: left 1s ease-out, top 1s ease-out;
-}
-
-.glass_lense{
-    position: absolute;
-    right: 30rem;
-    width: 300px;
-    top: -9rem;
-    transform: rotate(50deg);
-    z-index: -2;
-    transition: top 1s ease-out, right 1s ease-out;
-}
-
-.glass_curl{
-    position: absolute;
-    width: 200px;
-    right: 8rem;
-    top: 0rem;
-    z-index: -2;
-    transition: right 1s ease-out, top 1s ease-out;
-}
-
-.glass_plug{
-    position: absolute;
-    width: 200px;
-    top: 8rem;
-    right: -9rem;
-    z-index: -2;
-    transition: top 1s ease-out, right 1s ease-out;
+function setNewPosition(element, position, difference){
+    let int_in_px = parseInt(window.getComputedStyle(element).getPropertyValue(position));
+    let int_in_rem = int_in_px / 16;
+    int_in_rem = int_in_rem - difference;
+    return `${int_in_rem}rem`;
 }
