@@ -145,10 +145,14 @@ function buttonClicked(){
 function mouseHovered(){
     member_container.style.opacity = 1;
 
+    if (window.matchMedia("(max-width: 1280px)").matches){
+        return console.log("no animation");
+    }
+
     // decor movements
     triangle_bg.style.left = "-30rem";
     triangle_bg.style.bottom = "-25rem";
-    cylinder_bg.style.left = "-2rem";
+    cylinder_bg.style.left = "0rem";
     cylinder_bg.style.bottom = "-4rem";
     spiral_bg.style.left = "4rem";
     spiral_bg.style.bottom = "-24rem";
@@ -178,6 +182,10 @@ function mouseHovered(){
 function mouseUnhovered(){
     member_container.style.opacity = 0;
 
+    if (window.matchMedia("(max-width: 1280px)").matches){
+        return console.log("no animation");
+    }
+
     // decor movements
     triangle_bg.style.left = "-10rem";
     triangle_bg.style.bottom = "-5rem";
@@ -206,4 +214,11 @@ function mouseUnhovered(){
     glass_curl_bg.style.top = "0rem";
     glass_plug_bg.style.top = "8rem";
     glass_plug_bg.style.right = "-9rem";
+}
+
+function setNewPosition(element, position, difference){
+    let int_in_px = parseInt(window.getComputedStyle(element).getPropertyValue(position));
+    let int_in_rem = int_in_px / 16;
+    int_in_rem = int_in_rem - difference;
+    return `${int_in_rem}rem`;
 }
